@@ -1,0 +1,63 @@
+<section class="resume-section p-3 p-lg-5 d-flex" id="about">
+  <div class="w-100">
+      <div class="card-columns">
+        <ng-container *ngIf="itemsList">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <button (click)="open(content, '')" class="tn btn-success" type="button">
+                <i class="fa fa-plus"></i>
+              </button>
+            </div>
+            <input type="text" placeholder="... search" name="search"  class="form-control" autocomplete="off">
+            <div class="input-group-prepend">
+              <button class="btn btn-warning" id="button-addon2" type="button" >Search</button>
+            </div>
+          </div>
+          <div class="card" *ngFor="let item of itemsList">
+            <div class="card-body">
+              <h5 class="card-title">{{item.title}}
+                <a (click)="open(content, item.id)" href="javascript:;"
+                 class="d"><i class="fa fa-edit"></i></a>
+              </h5>
+              <p class="card-text">{{item.description}}</p>
+              <a (click)="deleteItem(deleteModel, item.id)"  class ="text-danger"
+                   href="javascript:;" ><i class="fa fa-trash"></i></a>
+            </div>
+          </div>
+        </ng-container>
+      </div>
+  </div>
+</section>
+<ng-template #deleteModel let-c="close" let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Item Deletion</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <p>Are you sure you want to delte <span class="text-primary">this item</span>?</p>
+    <p> All information associated to this  item will be permanently deleted
+      <span class="text-danger"> this operation can not be undone</span>
+    </p>
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" 
+    (click)="c('Save click')">Save</button>
+  </div>
+</ng-template>
+
+<!-- Add or Edit Model -->
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Item Details</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <app-note-show [itemId]="itemId" [items]="getUpdatedItem($event)"></app-note-show>
+
+</ng-template>
+
+

@@ -1,0 +1,45 @@
+
+<div class="d-flex" id="wrapper"> 
+
+    <!-- Sidebar -->
+    <div class="bg-light border-right"  *ngIf="show" id="sidebar-wrapper">
+      <div class="sidebar-heading"> User Dashboard </div>
+      <div class="list-group list-group-flush">
+        <a [routerLink]="['../user/']" class="list-group-item list-group-item-action bg-light" >Home</a>
+        <a [routerLink]="['../user/']"  class="list-group-item list-group-item-action bg-light">News</a>
+        <a [routerLink]="['../user/notes']"  class="list-group-item list-group-item-action bg-light">Notes</a>
+        <a (click)="logout()" class="list-group-item list-group-item-action bg-light">Logout</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+
+      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+        <button class="btn btn-primary" id="menu-toggle" (click)="toggle()">Toggle Menu</button>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+           
+          </ul>
+        </div>
+      </nav>
+
+      <div class="container-fluid p-0 pageContentStyle">
+        <router-outlet> </router-outlet>
+
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+  </div>
